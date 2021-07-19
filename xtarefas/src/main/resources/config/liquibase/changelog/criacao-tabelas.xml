@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="luan.augusto">
+        <createTable schemaName="${schema}" tableName="TB_TAREFA">
+
+            <column name="ID" type="INTEGER" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="TX_NOME" type="varchar(80)">
+                <constraints uniqueConstraintName="UK_PERFIL_NOME" nullable="false"/>
+            </column>
+
+            <column name="ST_ATIVO" type="varchar(1)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="luan.augusto">
+        <addUniqueConstraint
+                schemaName="${schema}"
+                columnNames="TX_NOME"
+                constraintName="UK_PERFIL_NOME"
+                tableName="TB_PERFIL"
+        />
+    </changeSet>
+
+    <changeSet id="3" author="luan.augusto">
+        <createSequence sequenceName="SEQ_PERFIL" startValue="1" schemaName="${schema}"/>
+    </changeSet>
+
+    <changeSet id="4" author="luan.augusto">
+        <sql>
+            ALTER TABLE ${schema}.TB_PERFIL ADD constraint "CK_PERFIL_ATIVO" check ("ST_ATIVO" in ('S', 'N'));
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
