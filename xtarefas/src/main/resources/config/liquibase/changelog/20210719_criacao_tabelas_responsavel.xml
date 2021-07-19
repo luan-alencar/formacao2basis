@@ -7,20 +7,23 @@
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="luan.augusto">
-        <createTable schemaName="${schema}" tableName="TB_TAREFA">
+        <createTable tableName="TB_RESPONSAVEL">
 
-            <column name="ID" type="INTEGER" autoIncrement="${autoIncrement}">
+            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="TX_NOME" type="varchar(80)">
-                <constraints uniqueConstraintName="UK_PERFIL_NOME" nullable="false"/>
-            </column>
-
-            <column name="ST_ATIVO" type="varchar(1)">
+            <column name="NOME" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
 
+            <column name="EMAIL" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DATA_NASCIMENTO" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
