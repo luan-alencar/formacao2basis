@@ -10,7 +10,7 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
         <createTable tableName="TB_RESPONSAVEL">
 
             <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints nullable="false"/>
             </column>
 
             <column name="NOME" type="varchar(80)">
@@ -25,25 +25,9 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
 
-    <changeSet id="2" author="luan.augusto">
-        <addUniqueConstraint
-                schemaName="${schema}"
-                columnNames="TX_NOME"
-                constraintName="UK_PERFIL_NOME"
-                tableName="TB_PERFIL"
-        />
-    </changeSet>
-
-    <changeSet id="3" author="luan.augusto">
-        <createSequence sequenceName="SEQ_PERFIL" startValue="1" schemaName="${schema}"/>
-    </changeSet>
-
-    <changeSet id="4" author="luan.augusto">
-        <sql>
-            ALTER TABLE ${schema}.TB_PERFIL ADD constraint "CK_PERFIL_ATIVO" check ("ST_ATIVO" in ('S', 'N'));
-        </sql>
+        <addPrimaryKey tableName="TB_RESPONSAVEL" columnNames="ID" constraintName="PK_RESPONSAVEL"/>
+        <createSequence sequenceName="SQ_RESPONSAVEL" incrementBy="1" startValue="1"/>
     </changeSet>
 
 </databaseChangeLog>
