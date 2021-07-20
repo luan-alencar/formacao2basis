@@ -7,15 +7,15 @@ import java.util.List;
 
 @Service
 @Transactional
-public interface ServiceGenericEntity<T, X> {
+public interface ServiceGenericEntity<D> {
 
-    List<T> buscarTodos();
+    List<D> buscarTodos();
 
-    X salvar(T entity);
+    D salvar(D entity);
 
-    void delete(T entity);
+    D atualizar(D id);
 
-    T buscarPorId(Integer id);
+    D buscarPorId(Integer id);
 
-    X atualizar(T id);
+    void delete(D entity);
 }
