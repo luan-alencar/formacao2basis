@@ -7,30 +7,43 @@
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="2" author="luan.augusto">
-        <createTable tableName="TB_ANEXO">
+        <createTable tableName="TB_TAREFA">
 
             <column name="ID" type="NUMBER">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="FILE" type="varchar(80)">
+            <column name="NOME" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="FILENAME" type="varchar(255)">
+            <column name="DATA_CONCLUSAO" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="ID_TAREFA" type="NUMBER">
+            <column name="DATA_INICIO" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="STATUS" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="ID_ANEXO" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="ID_RESPONSAVEL" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
 
-        <addPrimaryKey tableName="TB_ANEXO" columnNames="ID" constraintName="PK_ANEXO"/>
-        <addForeignKeyConstraint baseTableName="TB_ANEXO" baseColumnNames="ID_TAREFA"
+        <addPrimaryKey tableName="TB_TAREFA" columnNames="ID" constraintName="PK_ANEXO"/>
+        <addForeignKeyConstraint baseTableName="TB_TAREFA" baseColumnNames="ID_ANEXO"
                                  constraintName="FK_ANEXO"
-                                 referencedTableName="TB_TAREFA"
-                                 referencedColumnNames="ID_ANEXO"/>
+                                 referencedTableName="TB_ANEXO"
+                                 referencedColumnNames="ID"/>
         <createSequence sequenceName="SQ_ANEXO" incrementBy="1" startValue="1"/>
     </changeSet>
 

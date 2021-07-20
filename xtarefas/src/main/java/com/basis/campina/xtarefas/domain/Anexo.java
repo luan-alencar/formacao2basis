@@ -23,4 +23,7 @@ public class Anexo {
     @Column(name = "FILENAME")
     private String filename;
 
+    @ManyToOne
+    @JoinColumn(name = "idAnexo")
+    private Tarefa tarefa;
 }

@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public interface ServiceGenericEntity<D> {
 
     List<D> buscarTodos();
