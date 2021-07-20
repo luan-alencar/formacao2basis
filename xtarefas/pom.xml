@@ -13,10 +13,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Xtarefas</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>8</java.version>
-		<testcontainers.version>1.15.3</testcontainers.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>2020.0.0</spring-cloud.version>
+        <testcontainers.version>1.15.1</testcontainers.version>
+        <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,6 +92,13 @@
 			<artifactId>rabbitmq</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.3.1.Final</version>
+		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
