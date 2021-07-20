@@ -13,7 +13,7 @@ public interface ResponsavelService extends ServiceGenericEntity<ResponsavelDTO>
     ResponsavelDTO salvar(ResponsavelDTO entity);
 
     @Override
-    ResponsavelDTO atualizar(ResponsavelDTO id);
+    ResponsavelDTO atualizar(ResponsavelDTO entity);
 
     @Override
     ResponsavelDTO buscarPorId(Integer id);
