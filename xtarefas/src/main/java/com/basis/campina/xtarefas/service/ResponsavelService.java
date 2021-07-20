@@ -19,5 +19,5 @@ public interface ResponsavelService extends ServiceGenericEntity<ResponsavelDTO>
     ResponsavelDTO buscarPorId(Integer id);
 
     @Override
-    void delete(ResponsavelDTO entity);
+    void delete(Integer entity);
 }

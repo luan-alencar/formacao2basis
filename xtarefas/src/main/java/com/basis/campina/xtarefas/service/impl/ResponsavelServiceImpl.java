@@ -41,7 +41,7 @@ public class ResponsavelServiceImpl implements ResponsavelService {
     }
 
     @Override
-    public void delete(ResponsavelDTO entity) {
-        respository.deleteById(entity.getId());
+    public void delete(Integer entityId) {
+        respository.deleteById(entityId);
     }
 }

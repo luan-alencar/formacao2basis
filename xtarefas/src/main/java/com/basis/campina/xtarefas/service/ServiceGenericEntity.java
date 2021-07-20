@@ -17,5 +17,5 @@ public interface ServiceGenericEntity<D> {
 
     D buscarPorId(Integer id);
 
-    void delete(D entity);
+    void delete(Integer entityId);
 }

@@ -19,5 +19,5 @@ public interface AnexoService extends ServiceGenericEntity<AnexoDTO> {
     AnexoDTO buscarPorId(Integer id);
 
     @Override
-    void delete(AnexoDTO entity);
+    void delete(Integer entityId);
 }
