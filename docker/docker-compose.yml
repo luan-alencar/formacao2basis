@@ -1,0 +1,10 @@
+version: '2'
+services:
+  xtarefas-postgresql:
+    extends:
+      file: postgresql.yml
+      service: postgresql
+  xtarefas-minio:
+    extends:
+      file: minio.yml
+      service: minio
