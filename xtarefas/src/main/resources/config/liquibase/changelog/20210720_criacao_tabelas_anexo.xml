@@ -7,10 +7,17 @@
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="2" author="luan.augusto">
+
+        <createSequence
+                sequenceName="SQ_ANEXO"
+                incrementBy="1"
+                startValue="1"
+        />
+
         <createTable tableName="TB_ANEXO">
 
-            <column name="ID" type="NUMBER">
-                <constraints nullable="false"/>
+            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+                <constraints nullable="false" primaryKey="true"/>
             </column>
 
             <column name="FILE" type="varchar(80)">
@@ -26,12 +33,15 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="TB_ANEXO" columnNames="ID" constraintName="PK_ANEXO"/>
-        <addForeignKeyConstraint baseTableName="TB_ANEXO" baseColumnNames="ID_TAREFA"
-                                 constraintName="FK_ANEXO"
-                                 referencedTableName="TB_TAREFA"
-                                 referencedColumnNames="ID_ANEXO"/>
-        <createSequence sequenceName="SQ_ANEXO" incrementBy="1" startValue="1"/>
+        <addForeignKeyConstraint
+                constraintName="FK_ANEXO"
+                baseTableName="TB_ANEXO"
+                baseColumnNames="ID_TAREFA"
+
+                referencedTableName="TB_ANEXO"
+                referencedColumnNames="ID"
+        />
+
     </changeSet>
 
 </databaseChangeLog>

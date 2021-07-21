@@ -7,10 +7,17 @@
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="2" author="luan.augusto">
+
+        <createSequence
+                sequenceName="SQ_ANEXO"
+                incrementBy="1"
+                startValue="1"
+        />
+
         <createTable tableName="TB_TAREFA">
 
-            <column name="ID" type="NUMBER">
-                <constraints nullable="false"/>
+            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="NOME" type="varchar(80)">
@@ -25,11 +32,7 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
                 <constraints nullable="false"/>
             </column>
 
-            <column name="STATUS" type="VARCHAR(30)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="ID_ANEXO" type="NUMBER">
+            <column name="STATUS" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
 
@@ -39,12 +42,15 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
 
         </createTable>
 
-        <addPrimaryKey tableName="TB_TAREFA" columnNames="ID" constraintName="PK_ANEXO"/>
-        <addForeignKeyConstraint baseTableName="TB_TAREFA" baseColumnNames="ID_ANEXO"
-                                 constraintName="FK_ANEXO"
-                                 referencedTableName="TB_ANEXO"
-                                 referencedColumnNames="ID"/>
-        <createSequence sequenceName="SQ_ANEXO" incrementBy="1" startValue="1"/>
+        <addForeignKeyConstraint
+                constraintName="FK_RESPONSAVEL_TAREFA"
+                baseColumnNames="ID_RESPONSAVEL"
+                baseTableName="TB_TAREFA"
+
+                referencedTableName="TB_RESPONSAVEL"
+                referencedColumnNames="ID"
+        />
+
     </changeSet>
 
 </databaseChangeLog>

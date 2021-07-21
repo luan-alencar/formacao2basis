@@ -7,10 +7,17 @@
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="luan.augusto">
+
+        <createSequence
+                sequenceName="SQ_RESPONSAVEL"
+                incrementBy="1"
+                startValue="1"
+        />
+
         <createTable tableName="TB_RESPONSAVEL">
 
-            <column name="ID" type="NUMBER">
-                <constraints nullable="false"/>
+            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
             </column>
 
             <column name="NOME" type="varchar(80)">
@@ -26,8 +33,6 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="TB_RESPONSAVEL" columnNames="ID" constraintName="PK_RESPONSAVEL"/>
-        <createSequence sequenceName="SQ_RESPONSAVEL" incrementBy="1" startValue="1"/>
     </changeSet>
 
 </databaseChangeLog>

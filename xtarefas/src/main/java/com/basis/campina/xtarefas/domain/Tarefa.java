@@ -39,7 +39,7 @@ public class Tarefa {
     private LocalDateTime dataConclusao;
 
     @Column(name = "STATUS")
-    private String status;
+    private Boolean status;
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "ANEXO")
     @Column(name = "ID_ANEXO")
