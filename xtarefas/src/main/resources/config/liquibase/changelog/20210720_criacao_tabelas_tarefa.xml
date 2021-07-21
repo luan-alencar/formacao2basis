@@ -9,46 +9,46 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
     <changeSet id="2" author="luan.augusto">
 
         <createSequence
-                sequenceName="SQ_ANEXO"
+                sequenceName="sq_tarefa"
                 incrementBy="1"
                 startValue="1"
         />
 
-        <createTable tableName="TB_TAREFA">
+        <createTable tableName="tb_tarefa">
 
-            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+            <column name="id" type="number" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="NOME" type="varchar(80)">
+            <column name="nome" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="DATA_CONCLUSAO" type="TIMESTAMP">
+            <column name="data_conclusao" type="timestamp">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="DATA_INICIO" type="TIMESTAMP">
+            <column name="data_inicio" type="timestamp">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="STATUS" type="BOOLEAN">
+            <column name="status" type="boolean">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="ID_RESPONSAVEL" type="NUMBER">
+            <column name="id_responsavel" type="number">
                 <constraints nullable="false"/>
             </column>
 
         </createTable>
 
         <addForeignKeyConstraint
-                constraintName="FK_RESPONSAVEL_TAREFA"
-                baseColumnNames="ID_RESPONSAVEL"
-                baseTableName="TB_TAREFA"
+                constraintName="fk_responsavel_tarefa"
+                baseColumnNames="id_responsavel"
+                baseTableName="tb_tarefa"
 
-                referencedTableName="TB_RESPONSAVEL"
-                referencedColumnNames="ID"
+                referencedTableName="tb_responsavel"
+                referencedColumnNames="id"
         />
 
     </changeSet>

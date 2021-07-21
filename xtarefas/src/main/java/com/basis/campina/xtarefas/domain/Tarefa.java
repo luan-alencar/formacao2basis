@@ -18,35 +18,31 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Table(name = "TB_TAREFA")
+@Table(name = "tb_tarefa")
 @Entity
 @Getter
 @Setter
 public class Tarefa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_ANEXO")
-    @SequenceGenerator(name = "SQ_ANEXO", allocationSize = 1, sequenceName = "SQ_ANEXO")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_tarefa")
+    @SequenceGenerator(name = "sq_tarefa", allocationSize = 1, sequenceName = "sq_tarefa")
     private Integer id;
 
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "DATA_INICIO")
+    @Column(name = "data_inicio")
     private LocalDateTime dataInicio;
 
-    @Column(name = "DATA_CONCLUSAO")
+    @Column(name = "data_conclusao")
     private LocalDateTime dataConclusao;
 
-    @Column(name = "STATUS")
+    @Column(name = "status")
     private Boolean status;
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "ANEXO")
-    @Column(name = "ID_ANEXO")
-    private List<Anexo> idAnexo;
-
-    @Column(name = "ID_RESPONSAVEL")
-    @OneToOne(cascade = CascadeType.ALL)
-    private Responsavel idResponsavel;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_responsavel")
+    private Responsavel responsavel;
 
 }

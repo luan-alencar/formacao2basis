@@ -1,7 +1,7 @@
 package com.basis.campina.xtarefas.service.impl;
 
 import com.basis.campina.xtarefas.domain.Responsavel;
-import com.basis.campina.xtarefas.repository.ResponsavelRespository;
+import com.basis.campina.xtarefas.repository.ResponsavelRepository;
 import com.basis.campina.xtarefas.service.ResponsavelService;
 import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import com.basis.campina.xtarefas.service.mapper.ResponsavelMapper;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResponsavelServiceImpl implements ResponsavelService {
 
-    private final ResponsavelRespository respository;
+    private final ResponsavelRepository respository;
     private final ResponsavelMapper mapper;
 
     @Override

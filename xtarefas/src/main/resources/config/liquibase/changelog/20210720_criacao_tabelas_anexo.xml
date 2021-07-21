@@ -6,40 +6,40 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
 http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="2" author="luan.augusto">
+    <changeSet id="3" author="luan.augusto">
 
         <createSequence
-                sequenceName="SQ_ANEXO"
+                sequenceName="sq_anexo"
                 incrementBy="1"
                 startValue="1"
         />
 
-        <createTable tableName="TB_ANEXO">
+        <createTable tableName="tb_anexo">
 
-            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+            <column name="id" type="number" autoIncrement="${autoIncrement}">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
-            <column name="FILE" type="varchar(80)">
+            <column name="file" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="FILENAME" type="varchar(255)">
+            <column name="filename" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="ID_TAREFA" type="NUMBER">
+            <column name="id_tarefa" type="number">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
         <addForeignKeyConstraint
-                constraintName="FK_ANEXO"
-                baseTableName="TB_ANEXO"
-                baseColumnNames="ID_TAREFA"
+                constraintName="fk_anexo"
+                baseTableName="tb_anexo"
+                baseColumnNames="id_tarefa"
 
-                referencedTableName="TB_ANEXO"
-                referencedColumnNames="ID"
+                referencedTableName="tb_tarefa"
+                referencedColumnNames="id"
         />
 
     </changeSet>

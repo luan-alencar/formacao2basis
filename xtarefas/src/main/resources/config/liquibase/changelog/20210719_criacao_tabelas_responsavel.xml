@@ -9,28 +9,29 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
     <changeSet id="1" author="luan.augusto">
 
         <createSequence
-                sequenceName="SQ_RESPONSAVEL"
+                sequenceName="sq_responsavel"
                 incrementBy="1"
                 startValue="1"
         />
 
-        <createTable tableName="TB_RESPONSAVEL">
+        <createTable tableName="tb_responsavel">
 
-            <column name="ID" type="NUMBER" autoIncrement="${autoIncrement}">
+            <column name="id" type="number" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="NOME" type="varchar(80)">
+            <column name="nome" type="varchar(80)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="EMAIL" type="varchar(255)">
+            <column name="email" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="DATA_NASCIMENTO" type="TIMESTAMP">
+            <column name="data_nascimento" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
 
     </changeSet>

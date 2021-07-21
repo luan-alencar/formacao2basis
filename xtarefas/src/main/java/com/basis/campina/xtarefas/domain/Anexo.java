@@ -6,24 +6,24 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Table(name = "TB_ANEXO")
+@Table(name = "tb_anexo")
 @Entity
 @Getter
 @Setter
 public class Anexo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_ANEXO")
-    @SequenceGenerator(name = "SQ_ANEXO", allocationSize = 1, sequenceName = "SQ_ANEXO")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_anexo")
+    @SequenceGenerator(name = "sq_anexo", allocationSize = 1, sequenceName = "sq_anexo")
     private Integer id;
 
-    @Column(name = "FILE")
+    @Column(name = "file")
     private String file;
 
-    @Column(name = "FILENAME")
+    @Column(name = "filename")
     private String filename;
 
-    @ManyToOne
-    @JoinColumn(name = "idAnexo")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tarefa", nullable = false)
     private Tarefa tarefa;
 }

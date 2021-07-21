@@ -1,15 +1,10 @@
 package com.basis.campina.xtarefas.service.impl;
 
 import com.basis.campina.xtarefas.domain.Anexo;
-import com.basis.campina.xtarefas.domain.Responsavel;
-import com.basis.campina.xtarefas.repository.AnexoRespository;
-import com.basis.campina.xtarefas.repository.ResponsavelRespository;
+import com.basis.campina.xtarefas.repository.AnexoRepository;
 import com.basis.campina.xtarefas.service.AnexoService;
-import com.basis.campina.xtarefas.service.ResponsavelService;
 import com.basis.campina.xtarefas.service.dto.AnexoDTO;
-import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import com.basis.campina.xtarefas.service.mapper.AnexoMapper;
-import com.basis.campina.xtarefas.service.mapper.ResponsavelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnexoServiceImpl implements AnexoService {
 
-    private final AnexoRespository respository;
+    private final AnexoRepository respository;
     private final AnexoMapper mapper;
 
     @Override

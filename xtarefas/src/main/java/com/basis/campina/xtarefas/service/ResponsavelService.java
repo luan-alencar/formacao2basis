@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public interface ResponsavelService extends ServiceGenericEntity<ResponsavelDTO> {
 
     @Override
