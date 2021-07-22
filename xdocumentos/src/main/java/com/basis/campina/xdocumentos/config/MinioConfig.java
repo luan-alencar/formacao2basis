@@ -14,22 +14,14 @@ public class MinioConfig {
 
     private final ApplicationProperties properties;
 
-    private final MinioClient BUCKET = MinioClient.builder()
-            .endpoint(properties.getUrl())
-            .credentials(properties.getAccessKey(), properties.getSecretKey())
-            .build();
-
     @Bean
     public MinioClient gerarMinioClient() {
-        MinioClient minioClientGerado = buscaERetornaMinioClient();
+        MinioClient minioClientGerado = MinioClient.builder()
+                .endpoint(properties.getUrl())
+                .credentials(properties.getAccessKey(), properties.getSecretKey())
+                .build();
         verificaSeExisteBucketClient(minioClientGerado);
         return minioClientGerado;
-    }
-
-    @Bean
-    public MinioClient buscaERetornaMinioClient() {
-        MinioClient client = BUCKET;
-        return client;
     }
 
     public void verificaSeExisteBucketClient(MinioClient client) {
