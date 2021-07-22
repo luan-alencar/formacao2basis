@@ -14,22 +14,25 @@ public class MinioConfig {
 
     private final ApplicationProperties properties;
 
+    private final MinioClient BUCKET = MinioClient.builder()
+            .endpoint(properties.getUrl())
+            .credentials(properties.getAccessKey(), properties.getSecretKey())
+            .build();
+
     @Bean
     public MinioClient gerarMinioClient() {
-        MinioClient minioClient = buscarERetornaMinioClient();
-        verificaSeExisteBucketClient(minioClient);
-        return minioClient;
+        MinioClient minioClientGerado = buscaERetornaMinioClient();
+        verificaSeExisteBucketClient(minioClientGerado);
+        return minioClientGerado;
     }
 
-    private MinioClient buscarERetornaMinioClient() {
-        MinioClient client = MinioClient.builder()
-                .endpoint(properties.getUrl())
-                .credentials(properties.getAccessKey(), properties.getSecretKey())
-                .build();
+    @Bean
+    public MinioClient buscaERetornaMinioClient() {
+        MinioClient client = BUCKET;
         return client;
     }
 
-    private void verificaSeExisteBucketClient(MinioClient client) {
+    public void verificaSeExisteBucketClient(MinioClient client) {
         if (!existeBucket(client, properties.getBucket())) {
             fazerBucket(client, properties.getBucket());
         }
