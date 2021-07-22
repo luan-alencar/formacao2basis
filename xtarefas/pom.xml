@@ -100,6 +100,13 @@
             <version>2.2.8.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.3.0</version>
+        </dependency>
+
 
     </dependencies>
     <dependencyManagement>
