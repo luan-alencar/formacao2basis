@@ -1,6 +1,6 @@
 version: '2'
 services:
-  xtarefas-postgresql:
+  xtarefas-elasticsearch:
     extends:
       file: postgresql.yml
       service: postgresql
@@ -8,3 +8,7 @@ services:
     extends:
       file: minio.yml
       service: minio
+  xtarefas-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: elasticsearch

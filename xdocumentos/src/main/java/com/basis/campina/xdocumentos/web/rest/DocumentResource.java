@@ -1,7 +1,7 @@
 package com.basis.campina.xdocumentos.web.rest;
 
+import com.basis.campina.xdocumentos.service.DocumentService;
 import com.basis.campina.xdocumentos.service.dto.DocumentDTO;
-import com.basis.campina.xdocumentos.service.dto.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.simpleframework.xml.Path;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class DocumentResource {
 
     private final DocumentService service;
 
-    @GetMapping
+    @GetMapping("/{uuid}")
     public ResponseEntity<DocumentDTO> buscar(@Path("uuid") String uuid) {
         return ResponseEntity.ok(service.buscarDocument(uuid));
     }

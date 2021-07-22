@@ -1,6 +1,7 @@
-package com.basis.campina.xdocumentos.service.dto;
+package com.basis.campina.xdocumentos.service;
 
 import com.basis.campina.xdocumentos.config.ApplicationProperties;
+import com.basis.campina.xdocumentos.service.dto.DocumentDTO;
 import io.minio.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
