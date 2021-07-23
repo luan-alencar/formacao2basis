@@ -3,6 +3,7 @@ package com.basis.campina.xtarefas.service.impl;
 import com.basis.campina.xtarefas.domain.Tarefa;
 import com.basis.campina.xtarefas.domain.elastic.TarefaDocument;
 import com.basis.campina.xtarefas.repository.TarefaRepository;
+import com.basis.campina.xtarefas.repository.elastic.TarefaSearchRepository;
 import com.basis.campina.xtarefas.service.TarefaService;
 import com.basis.campina.xtarefas.service.dto.TarefaDTO;
 import com.basis.campina.xtarefas.service.filter.TarefaFilter;
@@ -22,7 +23,7 @@ public class TarefaServiceImpl implements TarefaService {
 
     private final TarefaRepository respository;
     private final TarefaMapper mapper;
-//    private final
+    private final TarefaSearchRepository searchRepository;
 
     @Override
     public List<TarefaDTO> buscarTodos() {
@@ -52,6 +53,6 @@ public class TarefaServiceImpl implements TarefaService {
 
     @Override
     public Page<TarefaDocument> pesquisar(TarefaFilter filter, Pageable pageable) {
-        return null;
+        return searchRepository.search(filter.getFilter(), pageable);
     }
 }
