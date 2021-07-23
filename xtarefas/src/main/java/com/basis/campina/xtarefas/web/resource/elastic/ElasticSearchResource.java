@@ -17,11 +17,13 @@ public class ElasticSearchResource {
 
     @GetMapping
     public ResponseEntity<String> reindex() {
+        service.reindex();
         return ResponseEntity.ok("Reindexando todo o ElasticSearch");
     }
 
     @GetMapping("/{entity}")
     public ResponseEntity<String> reindex(@PathVariable("entity") String entity) {
+        service.reindexEntity(entity);
         return ResponseEntity.ok("Reindexando o ElasticSearch");
     }
 }

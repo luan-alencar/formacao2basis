@@ -13,6 +13,6 @@ public class AnexoDTO {
 
     private String filename;
 
-    private TarefaDTO tarefa;
+    private TarefaDTO tarefaID;
 
 }

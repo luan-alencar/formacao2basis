@@ -23,6 +23,9 @@ public class Anexo {
     @Column(name = "filename")
     private String filename;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tarefa", nullable = false)
     private Tarefa tarefa;

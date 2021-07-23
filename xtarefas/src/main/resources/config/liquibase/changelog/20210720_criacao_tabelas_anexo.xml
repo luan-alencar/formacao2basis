@@ -31,6 +31,12 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
             <column name="id_tarefa" type="number">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="uuid"
+                    type="text">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
 
         <addForeignKeyConstraint

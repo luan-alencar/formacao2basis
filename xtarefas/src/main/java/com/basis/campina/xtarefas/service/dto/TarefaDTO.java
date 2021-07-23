@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,5 +22,7 @@ public class TarefaDTO {
     private Boolean status;
 
     private Responsavel responsavel;
+
+    private List<AnexoDTO> anexos;
 
 }
