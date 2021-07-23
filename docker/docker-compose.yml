@@ -1,6 +1,6 @@
 version: '2'
 services:
-  xtarefas-elasticsearch:
+  xtarefas-postsgres:
     extends:
       file: postgresql.yml
       service: postgresql
