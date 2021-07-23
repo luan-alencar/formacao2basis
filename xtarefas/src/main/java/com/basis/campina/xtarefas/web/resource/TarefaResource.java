@@ -1,10 +1,17 @@
 package com.basis.campina.xtarefas.web.resource;
+
 import com.basis.campina.xtarefas.domain.Tarefa;
+import com.basis.campina.xtarefas.domain.elastic.AnexoDocument;
+import com.basis.campina.xtarefas.domain.elastic.TarefaDocument;
 import com.basis.campina.xtarefas.service.AnexoService;
 import com.basis.campina.xtarefas.service.TarefaService;
 import com.basis.campina.xtarefas.service.dto.AnexoDTO;
 import com.basis.campina.xtarefas.service.dto.TarefaDTO;
+import com.basis.campina.xtarefas.service.filter.AnexoFilter;
+import com.basis.campina.xtarefas.service.filter.TarefaFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,6 +56,11 @@ public class TarefaResource {
     public ResponseEntity<Void> remover(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/pesquisar")
+    public ResponseEntity<Page<TarefaDocument>> pesquisar(@RequestBody TarefaFilter filter, Pageable pageable) {
+        return ResponseEntity.ok(service.pesquisar(filter, pageable));
     }
 
 }
