@@ -4,6 +4,7 @@ import com.basis.campina.xtarefas.domain.Responsavel;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class TarefaDTO {
 
     private String nome;
 
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
 
-    private LocalDateTime dataConclusao;
+    private LocalDate dataConclusao;
 
     private Boolean status;
 

@@ -62,5 +62,4 @@ public class TarefaResource {
     public ResponseEntity<Page<TarefaDocument>> pesquisar(@RequestBody TarefaFilter filter, Pageable pageable) {
         return ResponseEntity.ok(service.pesquisar(filter, pageable));
     }
-
 }

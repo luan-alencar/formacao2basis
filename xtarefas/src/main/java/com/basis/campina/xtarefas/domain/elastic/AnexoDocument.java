@@ -34,7 +34,10 @@ public class AnexoDocument extends BaseDocument {
                     store = true, analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
     private String filename;
 
-    @Column(name="`UUID`")
+    @MultiField(mainField = @Field(type = FieldType.Text,
+            store = true, analyzer = TRIM_CASE_INSENSITIVE, fielddata = true),
+            otherFields = {@InnerField(suffix = SORT, type = FieldType.Text,
+                    store = true, analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
     private String uuid;
 
     @MultiField(mainField = @Field(type = FieldType.Text,
@@ -46,6 +49,7 @@ public class AnexoDocument extends BaseDocument {
     public AnexoDocument(Integer id, String file, String filename, String uuid, Tarefa tarefaID) {
         this.id = id;
         this.file = file;
+        this.uuid = uuid;
         this.filename = filename;
         this.tarefaID = tarefaID.getId().toString();
     }
