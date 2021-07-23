@@ -1,5 +1,4 @@
-package com.basis.campina.xtarefas.resource;
-
+package com.basis.campina.xtarefas.web.resource;
 import com.basis.campina.xtarefas.service.ResponsavelService;
 import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import lombok.RequiredArgsConstructor;

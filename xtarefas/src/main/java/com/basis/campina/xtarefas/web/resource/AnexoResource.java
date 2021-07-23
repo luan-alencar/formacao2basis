@@ -1,10 +1,9 @@
-package com.basis.campina.xtarefas.resource;
+package com.basis.campina.xtarefas.web.resource;
 
-import com.basis.campina.xtarefas.domain.Tarefa;
 import com.basis.campina.xtarefas.service.AnexoService;
-import com.basis.campina.xtarefas.service.TarefaService;
+import com.basis.campina.xtarefas.service.ResponsavelService;
 import com.basis.campina.xtarefas.service.dto.AnexoDTO;
-import com.basis.campina.xtarefas.service.dto.TarefaDTO;
+import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,30 +19,34 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tarefas")
+@RequestMapping("/api/anexos")
 @RequiredArgsConstructor
-public class TarefaResource {
+public class AnexoResource {
 
-    private final TarefaService service;
+    private final AnexoService service;
 
     @GetMapping
-    public ResponseEntity<List<TarefaDTO>> listar() {
-        return ResponseEntity.ok(service.buscarTodos());
+    public ResponseEntity<List<AnexoDTO>> listar() {
+        List<AnexoDTO> list = service.buscarTodos();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TarefaDTO> obterPorId(@PathVariable Integer id) {
-        return ResponseEntity.ok(service.buscarPorId(id));
+    public ResponseEntity<AnexoDTO> obterPorId(@PathVariable Integer id) {
+        AnexoDTO entidadeDTO = service.buscarPorId(id);
+        return ResponseEntity.ok(entidadeDTO);
     }
 
     @PostMapping
-    public ResponseEntity<TarefaDTO> salvar(@RequestBody TarefaDTO entidadeDTO) {
-        return ResponseEntity.ok(service.salvar(entidadeDTO));
+    public ResponseEntity<AnexoDTO> salvar(@RequestBody AnexoDTO entidadeDTO) {
+        AnexoDTO entidade = service.salvar(entidadeDTO);
+        return ResponseEntity.ok(entidade);
     }
 
     @PutMapping
-    public ResponseEntity<TarefaDTO> editar(@RequestBody TarefaDTO entidadeDTO) {
-        return ResponseEntity.ok(service.salvar(entidadeDTO));
+    public ResponseEntity<AnexoDTO> editar(@RequestBody AnexoDTO entidadeDTO) {
+        AnexoDTO entidade = service.salvar(entidadeDTO);
+        return ResponseEntity.ok(entidade);
     }
 
     @DeleteMapping("/{id}")
