@@ -1,10 +1,14 @@
 package com.basis.campina.xtarefas.web.resource;
 
+import com.basis.campina.xtarefas.domain.elastic.AnexoDocument;
 import com.basis.campina.xtarefas.service.AnexoService;
 import com.basis.campina.xtarefas.service.ResponsavelService;
 import com.basis.campina.xtarefas.service.dto.AnexoDTO;
 import com.basis.campina.xtarefas.service.dto.ResponsavelDTO;
+import com.basis.campina.xtarefas.service.filter.AnexoFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,6 +57,11 @@ public class AnexoResource {
     public ResponseEntity<Void> remover(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/pesquisar")
+    public ResponseEntity<Page<AnexoDocument>> pesquisar(@RequestBody AnexoFilter filter, Pageable pageable) {
+        return ResponseEntity.ok(service.pesquisar(filter, pageable));
     }
 
 }

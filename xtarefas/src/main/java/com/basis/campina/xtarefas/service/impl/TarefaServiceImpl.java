@@ -1,16 +1,15 @@
 package com.basis.campina.xtarefas.service.impl;
 
-import com.basis.campina.xtarefas.domain.Anexo;
 import com.basis.campina.xtarefas.domain.Tarefa;
-import com.basis.campina.xtarefas.repository.AnexoRepository;
+import com.basis.campina.xtarefas.domain.elastic.TarefaDocument;
 import com.basis.campina.xtarefas.repository.TarefaRepository;
-import com.basis.campina.xtarefas.service.AnexoService;
 import com.basis.campina.xtarefas.service.TarefaService;
-import com.basis.campina.xtarefas.service.dto.AnexoDTO;
 import com.basis.campina.xtarefas.service.dto.TarefaDTO;
-import com.basis.campina.xtarefas.service.mapper.AnexoMapper;
+import com.basis.campina.xtarefas.service.filter.TarefaFilter;
 import com.basis.campina.xtarefas.service.mapper.TarefaMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +22,7 @@ public class TarefaServiceImpl implements TarefaService {
 
     private final TarefaRepository respository;
     private final TarefaMapper mapper;
+//    private final
 
     @Override
     public List<TarefaDTO> buscarTodos() {
@@ -48,5 +48,10 @@ public class TarefaServiceImpl implements TarefaService {
     @Override
     public void delete(Integer entityId) {
         respository.deleteById(entityId);
+    }
+
+    @Override
+    public Page<TarefaDocument> pesquisar(TarefaFilter filter, Pageable pageable) {
+        return null;
     }
 }
