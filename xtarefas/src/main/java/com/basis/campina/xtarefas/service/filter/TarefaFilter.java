@@ -16,7 +16,7 @@ public class TarefaFilter extends DefaultFilter implements BaseFilter, Serializa
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
 
         List<String> fields = new ArrayList<>();
-        filterFields(fields, querry, queryBuilder, "nome", "status", "responsavel");
+        filterFields(fields, querry, queryBuilder, "nome", "status", "responsavel") ;
 
         addShouldTermQuery(queryBuilder, "dataConclusao", querry);
         addShouldTermQuery(queryBuilder, "dataInicio", querry);
