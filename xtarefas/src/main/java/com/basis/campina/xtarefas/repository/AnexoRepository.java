@@ -20,4 +20,9 @@ public interface AnexoRepository extends JpaRepository<Anexo, Integer>, Reindexe
     @Query("SELECT new com.basis.campina.xtarefas.domain.elastic.AnexoDocument(" +
             " a.id, a.file, a.uuid, a.filename, a.tarefa) FROM Anexo a ORDER BY a.id")
     Page<AnexoDocument> reindexPage(Pageable pageable);
+
+    @Override
+    default String getEntity() {
+        return "anexo";
+    }
 }

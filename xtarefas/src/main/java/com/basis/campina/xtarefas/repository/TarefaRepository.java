@@ -24,7 +24,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Integer>, Reinde
 
     @Override
     default String getEntity() {
-        return "responsavel";
+        return "tarefa";
     }
 
 }
