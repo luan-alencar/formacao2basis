@@ -14,10 +14,10 @@ import org.springframework.stereotype.Repository;
 public interface AnexoRepository extends JpaRepository<Anexo, Integer>, Reindexer {
 
     @Query("SELECT new com.basis.campina.xtarefas.domain.elastic.AnexoDocument(" +
-            " a.id, a.file, a.uuid, a.filename, a.tarefaID) FROM Anexo a WHERE a.id = :id")
+            " a.id, a.file, a.uuid, a.filename, a.tarefa) FROM Anexo a WHERE a.id = :id")
     AnexoDocument getDocument(@Param("id") Integer id);
 
     @Query("SELECT new com.basis.campina.xtarefas.domain.elastic.AnexoDocument(" +
-            " a.id, a.file, a.uuid, a.filename, a.tarefaID) FROM Anexo a ORDER BY a.id")
+            " a.id, a.file, a.uuid, a.filename, a.tarefa) FROM Anexo a ORDER BY a.id")
     Page<AnexoDocument> reindexPage(Pageable pageable);
 }

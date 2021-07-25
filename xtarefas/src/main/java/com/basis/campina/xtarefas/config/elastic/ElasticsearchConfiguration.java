@@ -12,8 +12,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
-@Transactional
-@EnableElasticsearchRepositories
+@EnableElasticsearchRepositories("com.basis.campina.xtarefas.repository.elastic")
 public class ElasticsearchConfiguration extends AbstractElasticsearchConfiguration {
 
 

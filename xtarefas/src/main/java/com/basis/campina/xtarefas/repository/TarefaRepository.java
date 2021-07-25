@@ -19,7 +19,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Integer>, Reinde
     Page<TarefaDocument> reindexPage(Pageable pageable);
 
     @Query("SELECT new com.basis.campina.xtarefas.domain.elastic.TarefaDocument(" +
-            " t.id, t.nome, t.dataConclusao, t.dataInicio, t.status, t.responsavel) FROM Tarefa t WHERE r.id = :id")
+            " t.id, t.nome, t.dataConclusao, t.dataInicio, t.status, t.responsavel) FROM Tarefa t WHERE t.id = :id")
     TarefaDocument getDocument(@Param("id") Integer id);
 
     @Override

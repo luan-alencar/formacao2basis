@@ -4,20 +4,11 @@ import com.basis.campina.xtarefas.domain.Tarefa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.InnerField;
-import org.springframework.data.elasticsearch.annotations.MultiField;
+import org.springframework.data.elasticsearch.annotations.*;
 
-import javax.persistence.Column;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
-@Document(indexName = "index-anexo")
 @Getter
 @Setter
+@Document(indexName = "index-anexo")
 @NoArgsConstructor
 public class AnexoDocument extends BaseDocument {
 
@@ -54,3 +45,5 @@ public class AnexoDocument extends BaseDocument {
         this.tarefaID = tarefaID.getId().toString();
     }
 }
+
+
