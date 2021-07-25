@@ -16,6 +16,11 @@ public class MinioConfig {
 
     @Bean
     public MinioClient gerarMinioClient() {
+        MinioClient minioClientGerado = getMinioClient();
+        return minioClientGerado;
+    }
+
+    private MinioClient getMinioClient() {
         MinioClient minioClientGerado = MinioClient.builder()
                 .endpoint(properties.getUrl())
                 .credentials(properties.getAccessKey(), properties.getSecretKey())
@@ -26,7 +31,7 @@ public class MinioConfig {
 
     public void verificaSeExisteBucketClient(MinioClient client) {
         if (!existeBucket(client, properties.getBucket())) {
-            fazerBucket(client, properties.getBucket());
+            criaBucket(client, properties.getBucket());
         }
     }
 
@@ -36,7 +41,7 @@ public class MinioConfig {
     }
 
     @SneakyThrows
-    public void fazerBucket(MinioClient minioClient, String nomeBucket) {
+    public void criaBucket(MinioClient minioClient, String nomeBucket) {
         minioClient.makeBucket(MakeBucketArgs.builder().bucket(nomeBucket).build());
     }
 }
