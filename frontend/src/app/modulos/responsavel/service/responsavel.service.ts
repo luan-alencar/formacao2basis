@@ -18,7 +18,7 @@ export class ResponsavelService {
   }
 
   buscarTodosResponsaveis(): Observable<Responsavel[]> {
-    return this.http.get<Responsavel[]>(`${this.url})`);
+    return this.http.get<Responsavel[]>(`${this.url}`);
   }
 
   salvarResponsavel(responsavel: Responsavel): Observable<Responsavel> {
