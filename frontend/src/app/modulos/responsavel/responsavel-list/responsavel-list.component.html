@@ -1,20 +1,50 @@
-<app-card [titulo]="'responsvel-list'">
+<app-card [titulo]="'Lista de responsaveis'">
+
+    <div class="p-d-flex p-jc-end">
+
+        <button
+             class="p-ml-2"
+             type="button"
+             (click)="mostrarDialog()" 
+             pButton
+             label="Cadastrar Responsavel"></button>
+    </div>
+
+    <p-table [value]="responsaveis">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th style="width: 80px;">Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-usuario>
+            <tr>
+               
+                <td>{{responsavel.nome}}</td>
+                <td>{{responsavel.tarefas}}</td>
+               
+                <td class="p-d-flex p-jc-center">
+
+                    <button
+                         (click)="mostrarDialogEditar(responsavel.id)"
+                         pButton type="button"
+                         icon="pi pi-pencil"></button>
+
+                    <button
+                        (click)="confirmarDeletarResponsavel(responsavel.id)" 
+                        class="p-ml-2" pButton type="button"
+                        icon="pi pi-trash"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 
 </app-card>
-<div class="card-container">
-    <p-card class="card-list" header="Lista Responsavel" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-        </p>
-        <p-button label="Visualizar listagem" icon="pi pi-check"></p-button>
+<p-dialog header="Title" [(visible)]="exibirDialog">
+    <app-responsavel-form [responsavel]="responsavel" [edicao]="formularioEdicao" (responsavelSalvo)="fecharDialog($event)">
+    </app-responsavel-form>
+</p-dialog>
 
-    </p-card>
-
-    <p-card class="card-form" header="Formulario de Cadastro" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
-        </p>
-        <p-button label="Cadastrar novo" icon="pi pi-check"></p-button>
-
-    </p-card>
-</div>
+<p-confirmDialog header="Confirmar Remover Usuário" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,1 +1,16 @@
-<p>responsavel-form works!</p>
+<form [formGroup]="formResponsavel">
+
+    <div class="p-grid p-dir-col">
+
+        <input type="text" [(ngModel)]="responsavel.nome" placeholder="Nome Responsavel" formControlName="nome"
+            pInputText />
+        <div *ngIf="formResponsavel.get('nome').invalid">Nome inválido</div>
+
+        <input type="text" [(ngModel)]="responsavel.email" placeholder="Email" formControlName="email" pInputText />
+        <input id="field5" class="input" type="date" [(ngModel)]="responsavel.dataNascimento"
+        placeholder="Data Nascimento" formControlName="dataNascimento" pInputText />
+    </div>
+
+</form>
+
+<button (click)="salvar()" pButton type="button" [label]="edicao ? 'Editar' : 'Cadastrar'"></button>

@@ -4,19 +4,24 @@ import { CommonModule } from '@angular/common';
 import { ResponsavelRoutingModule } from './responsavel-routing.module';
 import { ResponsavelListComponent } from './responsavel-list/responsavel-list.component';
 import { ResponsavelFormComponent } from './responsavel-form/responsavel-form.component';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+import { ResponsavelService } from './service/responsavel.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [ResponsavelListComponent, ResponsavelFormComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ResponsavelRoutingModule,
-    CardModule,
-    ButtonModule
+    SharedModule,
+    HttpClientModule
+  ],
+  providers: [
+    ResponsavelService
   ]
 })
 export class ResponsavelModule { }
