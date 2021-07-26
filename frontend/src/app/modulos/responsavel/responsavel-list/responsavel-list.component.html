@@ -2,12 +2,7 @@
 
     <div class="p-d-flex p-jc-end">
 
-        <button
-             class="p-ml-2"
-             type="button"
-             (click)="mostrarDialog()" 
-             pButton
-             label="Cadastrar Responsavel"></button>
+        <button class="p-ml-2" type="button" (click)="mostrarDialog()" pButton label="Cadastrar Responsavel"></button>
     </div>
 
     <p-table [value]="responsaveis">
@@ -18,22 +13,18 @@
                 <th style="width: 80px;">Ações</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-usuario>
+        <ng-template pTemplate="body" let-responsavel>
             <tr>
-               
+
                 <td>{{responsavel.nome}}</td>
-                <td>{{responsavel.tarefas}}</td>
-               
+                <td>{{responsavel.dataNascimento | date: 'dd/MM/yyyy'}}</td>
+
                 <td class="p-d-flex p-jc-center">
 
-                    <button
-                         (click)="mostrarDialogEditar(responsavel.id)"
-                         pButton type="button"
-                         icon="pi pi-pencil"></button>
+                    <button (click)="mostrarDialogEditar(responsavel.id)" pButton type="button"
+                        icon="pi pi-pencil"></button>
 
-                    <button
-                        (click)="confirmarDeletarResponsavel(responsavel.id)" 
-                        class="p-ml-2" pButton type="button"
+                    <button (click)="confirmarDeletarResponsavel(responsavel.id)" class="p-ml-2" pButton type="button"
                         icon="pi pi-trash"></button>
                 </td>
             </tr>
@@ -43,8 +34,9 @@
 </app-card>
 
 <p-dialog header="Title" [(visible)]="exibirDialog">
-    <app-responsavel-form [responsavel]="responsavel" [edicao]="formularioEdicao" (responsavelSalvo)="fecharDialog($event)">
+    <app-responsavel-form [responsavel]="responsavel" [edicao]="formularioEdicao"
+        (responsavelSalvo)="fecharDialog($event)">
     </app-responsavel-form>
 </p-dialog>
 
-<p-confirmDialog header="Confirmar Remover Usuário" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-confirmDialog header="Confirmar Remover Responsavel" icon="pi pi-exclamation-triangle"></p-confirmDialog>

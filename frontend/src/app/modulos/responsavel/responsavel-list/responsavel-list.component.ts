@@ -28,10 +28,9 @@ export class ResponsavelListComponent implements OnInit {
   }
 
   private buscarTodosResponsaveis() {
-    this.service.buscarTodosUsuario()
-      .subscribe(responsavel => {
-        this.responsaveis = responsavel;
-        this.mostrarDialog(true);
+    this.service.buscarTodosResponsaveis()
+      .subscribe((responsaveis: Responsavel[]) => {
+        this.responsaveis = responsaveis;
       });
   }
 
@@ -54,11 +53,21 @@ export class ResponsavelListComponent implements OnInit {
   }
 
   confirmarDeletarResponsavel(id?: number) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir o responsavel?',
+      accept: () => {
+        this.deletarResponsavel(id);
+      }
+  });
+   
+  }
+
+  deletarResponsavel(id?: number) {
     this.service.deletarResponsavel(id)
-      .subscribe(() => {
-        alert('Responsavel deletado');
-        this.buscarTodosResponsaveis();
-      },
-        err => alert(err));
+    .subscribe(() => {
+      alert('Responsavel deletado');
+      this.buscarTodosResponsaveis();
+    },
+      err => alert(err));
   }
 }

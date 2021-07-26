@@ -17,7 +17,7 @@ export class ResponsavelService {
     return this.http.get<Responsavel>(`${this.url}/${id}`);
   }
 
-  buscarTodosUsuario(): Observable<Responsavel[]> {
+  buscarTodosResponsaveis(): Observable<Responsavel[]> {
     return this.http.get<Responsavel[]>(`${this.url})`);
   }
 
