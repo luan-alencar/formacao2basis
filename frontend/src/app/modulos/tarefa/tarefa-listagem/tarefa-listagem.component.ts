@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Anexo } from 'src/app/dominio/anexo';
+import { Responsavel } from 'src/app/dominio/responsavel';
+import { Tarefa } from 'src/app/dominio/tarefa';
+import { TarefaService } from '../service/tarefa.service';
 
 @Component({
   selector: 'app-tarefa-listagem',
@@ -7,9 +11,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TarefaListagemComponent implements OnInit {
 
-  constructor() { }
+  tarefas: Tarefa[] = [];
+  
+  tarefa = new Tarefa();
 
-  ngOnInit(): void {
+  exibirDialog = false;
+
+  responsaveis: Responsavel[] = [];
+
+  formularioEdicao: boolean;
+
+  anexos: Anexo[] = [];
+
+  statuses: any[];
+
+  loading: boolean = true;
+
+  activityValues: number[] = [0, 100];
+
+  constructor(private service: TarefaService) { }
+
+  ngOnInit() {
+    this.buscarTodasTarefas();
   }
 
+  private buscarTodasTarefas() {
+    this.service.buscarTodasTarefas()
+      .subscribe((tarefa: Tarefa[]) => {
+        this.tarefas = tarefa;
+      });
+  }
+
+  fecharDialog(event) {
+    this.exibirDialog = false;
+    this.buscarTodasTarefas();
+  }
 }

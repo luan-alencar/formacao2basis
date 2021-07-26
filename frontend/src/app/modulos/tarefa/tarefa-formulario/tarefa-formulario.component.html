@@ -1,1 +1,20 @@
 <p>tarefa-formulario works!</p>
+<form [formGroup]="formTarefa">
+
+    <div class="p-grid p-dir-col">
+
+        <input type="text" [(ngModel)]="tarefa.nome" placeholder="Nome Responsavel" formControlName="nome"
+            pInputText />
+        <div *ngIf="formTarefa.get('nome').invalid">Nome inválido</div>
+
+        <input type="text" [(ngModel)]="tarefa.responsavel" placeholder="Responsavel" formControlName="responsavel" pInputText />
+        <input id="field5" class="input" type="date" [(ngModel)]="tarefa.dataInicio"
+        placeholder="Data Inicio" formControlName="dataInicio" pInputText>
+        <input id="field5" class="input" type="date" [(ngModel)]="tarefa.dataConclusao"
+        placeholder="Data Conclusão" formControlName="dataConclusao" pInputText />
+        <input type="text" [(ngModel)]="tarefa.anexos" placeholder="Anexos" formControlName="anexos" pInputText />
+    </div>
+
+</form>
+
+<button (click)="salvar()" pButton type="button" [label]="edicao ? 'Editar' : 'Cadastrar'"></button>
