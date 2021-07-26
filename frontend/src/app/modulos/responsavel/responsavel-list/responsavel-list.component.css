@@ -1,0 +1,6 @@
+.card-container {
+    display: flex;
+    width: 80%;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
