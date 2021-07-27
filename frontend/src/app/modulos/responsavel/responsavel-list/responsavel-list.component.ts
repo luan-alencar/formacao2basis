@@ -8,6 +8,7 @@ import { MensagemUtil } from 'src/app/shared/utils/mensagem-util';
 import { ResponsavelService } from '../service/responsavel.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { StatusEnum } from 'src/app/shared/utils/status-enum';
+import { Page } from 'src/app/shared/model/page';
 
 
 @Component({
@@ -24,9 +25,9 @@ export class ResponsavelListComponent implements OnInit {
   responsavel = new Responsavel();
   exibirDialog = false;
   formularioEdicao: boolean;
-  filtro: DefaultFilter;
+  filtro = new DefaultFilter();
   dataTable: Table;
-  pageResponsavel: import("/home/luan/Documentos/BASIS/formacao2/frontend/src/app/shared/model/page").Page<Responsavel>;
+  pageResponsavel: Page<Responsavel> = new Page<Responsavel>();
 
   constructor(
     private service: ResponsavelService,
@@ -44,11 +45,9 @@ export class ResponsavelListComponent implements OnInit {
       });
   }
 
-  pesquisarResponsavel() {
-    this.blockUI.start(MensagemUtil.BLOCKUI_CARREGANDO);
+  pesquisarTarefa() {
     this.service.pesquisar(this.filtro, this.dataTable)
-      .pipe(finalize(() => this.blockUI.stop()))
-      .subscribe(page => { this.pageResponsavel = page; });
+      .subscribe(res => { this.pageResponsavel = res; });
   }
 
   mostrarDialog(edicao = false) {

@@ -19,11 +19,11 @@ import { ConfirmationService } from 'primeng';
     ReactiveFormsModule,
     ResponsavelRoutingModule,
     SharedModule,
-    HttpClientModule,
-    ConfirmationService
+    HttpClientModule
   ],
   providers: [
-    ResponsavelService
+    ResponsavelService,
+    ConfirmationService
   ]
 })
 export class ResponsavelModule { }
