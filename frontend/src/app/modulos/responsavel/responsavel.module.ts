@@ -8,6 +8,7 @@ import { ResponsavelService } from './service/responsavel.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ConfirmationService } from 'primeng';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     ResponsavelRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfirmationService
   ],
   providers: [
     ResponsavelService

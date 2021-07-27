@@ -1,109 +1,31 @@
-<app-card [titulo]="'Lista de Tarefas'">
+<p-card>
+    <h3>Tarefa</h3>
+    <div class="ui-float-label div-pesquisa">
+        <input pInputText [(ngModel)]="tarefaFiltro.querry" class="pesquisa" type="text"/>
+        <button (onClick)="pesquisarTarefa()" type="button" class="ui-button-rounded ui-button-info" [label]="'Pesquisar'" pButton></button>
+    </div>
 
-    <h5>Filter Menu</h5>
-    <p>Filters are displayed in an overlay.</p>
-    <p-table #dt1 [value]="tarefas" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
-        [paginator]="true">
+    <p-table #tabela [value]="pageTarefas.content" [lazy]="true" (onLazyLoad)="pesquisarTarefa()" [paginator]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+    [currentPageReportTemplate]="'Página {currentPage} de {totalPages}'" [totalRecords]="pageTarefas.totalElementos"
+    [scrollable]="true">
 
-        <ng-template pTemplate="caption">
-            <div class="p-d-flex">
-                <span class="p-input-icon-left p-ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
-                        placeholder="Search keyword" />
-                </span>
-            </div>
-        </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Nome
-                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th>
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Anexos
-                        <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false"
-                            [showOperator]="false" [showAddButton]="false">
-                            <ng-template pTemplate="header">
-                                <div class="p-px-3 p-pt-3 p-pb-0">
-                                    <span class="p-text-bold">Agent Picker</span>
-                                </div>
-                            </ng-template>
-                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                <p-multiSelect [ngModel]="tarefa.anexos" [options]="anexos" placeholder="Any"
-                                    (onChange)="filter($event.value)" optionLabel="name">
-                                    <ng-template let-option pTemplate="item">
-                                        <div class="p-multiselect-representative-option">
-                                            <span class="p-ml-1">{{option.name}}</span>
-                                        </div>
-                                    </ng-template>
-                                </p-multiSelect>
-                            </ng-template>
-                        </p-columnFilter>
-                    </div>
-                </th>
-                <th>
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Data de Início
-                        <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th>
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Data de Início
-                        <p-columnFilter type="date" field="tarefa.dataInicio" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th>
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Data Fim
-                        <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="width: 8rem">
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        Status
-                        <p-columnFilter type="boolean" field="status" display="menu"></p-columnFilter>
-                    </div>
-                </th>
+                <th>Nome</th>
+                <th>Data Inicio</th>
+                <th>Data Conclusao</th>
+                <th>Status</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-tarefa>
-            <tr>
-                <td>
-                    {{tarefa.nome}}
-                </td>
+            <tr p>
+                <td>{{tarefa.nome}}</td>
+                <td>{{tarefa.dataInicio}}</td>
+                <td>{{tarefa.dataConclusao}}</td>
+                <td>{{statusTarefa(tarefa.status)}}</td>
+            </tr>
+        </ng-template>
 
-                <td>
-                    {{tarefa.dataInicio | date: 'MM/dd/yyyy'}}
-                </td>
-                <td>
-                    {{tarefa.dataConclusao | date: 'MM/dd/yyyy'}}
-                </td>
-                <td>
-                    {{tarefa.status }}
-                </td>
-                <td>
-                    <span [class]="'tarefa-badge status-' + tarefa.status">{{tarefa.status}}</span>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="7">No customers found.</td>
-            </tr>
-        </ng-template>
     </p-table>
-
-</app-card>
-
-<p-dialog header="Title" [(visible)]="exibirDialog">
-    <app-tarefa-formulario [tarefa]="tarefa" [edicao]="formularioEdicao" (tarefaSalva)="fecharDialog($event)">
-    </app-tarefa-formulario>
-</p-dialog>
-
-<p-confirmDialog header="Confirmar Remover Tarefa" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+</p-card>

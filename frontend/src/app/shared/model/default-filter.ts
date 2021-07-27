@@ -1,6 +1,4 @@
 export class DefaultFilter {
 
-    query: number;
-
-    constructor(){}
+    querry: number;
 }

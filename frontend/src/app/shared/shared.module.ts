@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PRIMENG_IMPORTS } from './primeng-imports';
-import { CardComponent } from './components/card/card.component';
-import { ConfirmationService } from 'primeng';
-
+import { CommonModule } from '@angular/common';
+import { ServiceModule } from './services/service-module.service';
 @NgModule({
-    declarations: [
-        CardComponent
-    ],
     imports: [
         PRIMENG_IMPORTS,
-    ],
-    providers: [
-        ConfirmationService
+        CommonModule,
+        ServiceModule
     ],
     exports: [
         PRIMENG_IMPORTS,
-        CardComponent
-    ]
+        CommonModule,
+        ServiceModule
+    ],
 })
 export class SharedModule { }
+
