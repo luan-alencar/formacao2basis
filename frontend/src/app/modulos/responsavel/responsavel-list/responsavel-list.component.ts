@@ -1,14 +1,12 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, Table } from 'primeng';
-import { finalize } from 'rxjs/operators';
 import { Responsavel } from 'src/app/dominio/responsavel';
 import { DefaultFilter } from 'src/app/shared/model/default-filter';
-import { MensagemUtil } from 'src/app/shared/utils/mensagem-util';
 import { ResponsavelService } from '../service/responsavel.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { StatusEnum } from 'src/app/shared/utils/status-enum';
 import { Page } from 'src/app/shared/model/page';
+import { ViewChild } from '@angular/core';
 
 
 @Component({
@@ -20,14 +18,19 @@ export class ResponsavelListComponent implements OnInit {
 
   @Input() titulo: string;
   @BlockUI() blockUI: NgBlockUI;
+  @ViewChild(Table) set ft(dataTable: Table) {
+    console.log(dataTable);
+    this.ft = dataTable ;
+  }
 
-  responsaveis: Responsavel[] = [];
+  // @ViewChild(Table, {static: false}) dataTable: Table;
+
   responsavel = new Responsavel();
   exibirDialog = false;
   formularioEdicao: boolean;
   filtro = new DefaultFilter();
-  dataTable: Table;
   pageResponsavel: Page<Responsavel> = new Page<Responsavel>();
+  responsaveis: Responsavel[] = [];
 
   constructor(
     private service: ResponsavelService,
@@ -39,14 +42,18 @@ export class ResponsavelListComponent implements OnInit {
   }
 
   private buscarTodosResponsaveis() {
+    
+    console.log(this.ft)
     this.service.buscarTodosResponsaveis()
       .subscribe((responsaveis: Responsavel[]) => {
         this.responsaveis = responsaveis;
       });
   }
 
-  pesquisarTarefa() {
-    this.service.pesquisar(this.filtro, this.dataTable)
+  pesquisarResponsavel() {
+    debugger
+    console.log(this.ft)
+    this.service.pesquisar(this.filtro, this.ft)
       .subscribe(res => { this.pageResponsavel = res; });
   }
 

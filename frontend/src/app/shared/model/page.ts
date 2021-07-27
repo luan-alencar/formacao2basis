@@ -1,14 +1,14 @@
 export class Page<T> {
 
-    content: T[] = [];
-    primeiro: boolean;
-    ultimo: boolean;
-    totalElementos: number;
-    totalPaginas: number;
-    tamanho: number;
-    numero: number;
-    numeroDeElementos: number;
+    content: any[] = [];
+    last: boolean;
+    totalElements: number;
+    totalPages: number;
+    size: number;
+    number: number;
+    numberOfElements: number;
     sort: string;
+    first: boolean;
 
-    constructor() { }
+
 }
