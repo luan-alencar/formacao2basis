@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Table } from 'primeng';
 import { Observable } from 'rxjs';
 import { Responsavel } from 'src/app/dominio/responsavel';
+import { DefaultFilter } from 'src/app/shared/model/default-filter';
+import { Page } from 'src/app/shared/model/page';
+import { RequestUtils } from 'src/app/shared/utils/request-utils';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,5 +35,12 @@ export class ResponsavelService {
 
   deletarResponsavel(id: number): Observable<any> {
     return this.http.delete<Responsavel>(`${this.url}/${id}`);
+  }
+
+  pesquisar(filter: DefaultFilter, dataTable: Table): Observable<Page<Responsavel>> {
+    return this.http.post<Page<Responsavel>>(`${this.url}/pesquisar`, filter, {
+      params: RequestUtils.getRequestParamsTable(dataTable)
+    });
+
   }
 }
