@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { AfterViewInit, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, Table } from 'primeng';
 import { Responsavel } from 'src/app/dominio/responsavel';
@@ -14,22 +14,20 @@ import { ViewChild } from '@angular/core';
   templateUrl: './responsavel-list.component.html',
   styleUrls: ['./responsavel-list.component.css']
 })
-export class ResponsavelListComponent implements OnInit {
+export class ResponsavelListComponent implements OnInit, AfterViewInit {
 
   @Input() titulo: string;
   @BlockUI() blockUI: NgBlockUI;
-  @ViewChild(Table) set ft(dataTable: Table) {
-    console.log(dataTable);
-    this.ft = dataTable ;
-  }
 
-  // @ViewChild(Table, {static: false}) dataTable: Table;
+  @ViewChild(Table, { static: false }) dataTable: Table;
 
   responsavel = new Responsavel();
+  pageResponsavel: Page<Responsavel> = new Page<Responsavel>();
+  filtro = new DefaultFilter();
+
   exibirDialog = false;
   formularioEdicao: boolean;
-  filtro = new DefaultFilter();
-  pageResponsavel: Page<Responsavel> = new Page<Responsavel>();
+
   responsaveis: Responsavel[] = [];
 
   constructor(
@@ -37,13 +35,17 @@ export class ResponsavelListComponent implements OnInit {
     private confirmationService: ConfirmationService
   ) { }
 
+  ngAfterViewInit(): void {
+    this.pesquisarResponsavel();
+  }
+
   ngOnInit(): void {
     this.buscarTodosResponsaveis();
   }
 
   private buscarTodosResponsaveis() {
-    
-    console.log(this.ft)
+
+    console.log(this.dataTable)
     this.service.buscarTodosResponsaveis()
       .subscribe((responsaveis: Responsavel[]) => {
         this.responsaveis = responsaveis;
@@ -51,9 +53,9 @@ export class ResponsavelListComponent implements OnInit {
   }
 
   pesquisarResponsavel() {
-    debugger
-    console.log(this.ft)
-    this.service.pesquisar(this.filtro, this.ft)
+
+    console.log(this.dataTable)
+    this.service.pesquisar(this.filtro, this.dataTable)
       .subscribe(res => { this.pageResponsavel = res; });
   }
 
@@ -82,7 +84,6 @@ export class ResponsavelListComponent implements OnInit {
         this.deletarResponsavel(id);
       }
     });
-
   }
 
   deletarResponsavel(id?: number) {
