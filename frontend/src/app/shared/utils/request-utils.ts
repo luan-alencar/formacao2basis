@@ -10,7 +10,7 @@ export class RequestUtils {
             return params;
         }
 
-        console.log(dataTable);
+        
         params = params.append('page', Math.round(dataTable.first / dataTable.rows).toString());
         params = params.append('size', dataTable.rows == null ? '10' : dataTable.rows.toString());
 

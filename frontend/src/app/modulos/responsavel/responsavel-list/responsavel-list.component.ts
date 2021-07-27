@@ -36,6 +36,7 @@ export class ResponsavelListComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
+    debugger
     this.pesquisarResponsavel();
   }
 
@@ -55,6 +56,9 @@ export class ResponsavelListComponent implements OnInit, AfterViewInit {
   pesquisarResponsavel() {
 
     console.log(this.dataTable)
+    if (!this.dataTable) {
+      return;
+    }
     this.service.pesquisar(this.filtro, this.dataTable)
       .subscribe(res => { this.pageResponsavel = res; });
   }
